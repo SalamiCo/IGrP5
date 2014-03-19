@@ -45,7 +45,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>freeglut project 3D\sources;freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -75,8 +75,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="freeglut project 3d\main.cpp" />
+    <ClCompile Include="freeglut project 3D\sources\Cara.cpp" />
+    <ClCompile Include="freeglut project 3D\sources\Malla.cpp" />
+    <ClCompile Include="freeglut project 3D\sources\Matr.cpp" />
+    <ClCompile Include="freeglut project 3D\sources\PV3D.cpp" />
+    <ClCompile Include="freeglut project 3D\sources\VerticeNormal.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="freeglut project 3D\sources\Cara.h" />
+    <ClInclude Include="freeglut project 3D\sources\Malla.h" />
+    <ClInclude Include="freeglut project 3D\sources\Matr.h" />
+    <ClInclude Include="freeglut project 3D\sources\PV3D.h" />
+    <ClInclude Include="freeglut project 3D\sources\VerticeNormal.h" />
     <ClInclude Include="freeglut\include\gl\freeglut.h" />
     <ClInclude Include="freeglut\include\gl\freeglut_ext.h" />
     <ClInclude Include="freeglut\include\gl\freeglut_std.h" />

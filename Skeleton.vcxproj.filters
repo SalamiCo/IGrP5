@@ -18,6 +18,21 @@
     <ClCompile Include="freeglut project 3d\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="freeglut project 3D\sources\Cara.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="freeglut project 3D\sources\Malla.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="freeglut project 3D\sources\PV3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="freeglut project 3D\sources\VerticeNormal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="freeglut project 3D\sources\Matr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="freeglut\include\gl\freeglut.h">
@@ -30,6 +45,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="freeglut\include\gl\glut.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freeglut project 3D\sources\Cara.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freeglut project 3D\sources\Malla.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freeglut project 3D\sources\PV3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freeglut project 3D\sources\VerticeNormal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freeglut project 3D\sources\Matr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

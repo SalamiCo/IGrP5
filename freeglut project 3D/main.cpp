@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -6,6 +8,7 @@
 #include <GL/glut.h>
 
 #include <iostream>
+#include "PV3D.h"
 using namespace std;
 
 // Freeglut parameters
@@ -77,7 +80,66 @@ void display(void) {
 	glEnd();
 
 	glColor3f(1.0, 1.0, 1.0);
-	glutSolidSphere(3, 30, 30);
+
+	//Perfil por marco de Frenet
+	int nP = 20; //Numero de lados
+	PV3D perfil[20];
+	int r = 3;
+	double inc = (2*M_PI)/nP;
+	for(int i=0; i<nP; i++){
+		perfil[i] = PV3D(r*cos(2*M_PI-i*inc), r*sin(2*M_PI-i*inc), 0, 1);
+	}
+	
+	
+	int R = 5;
+	float m[4][4];
+
+	PV3D sol[20];
+	float vectResult[4];
+	float vectArray[4];
+	for(int valor=0; valor<15; valor++){
+		float t = (2* M_PI * valor) / 15.0;
+			m[0][0] = -cos(t);
+			m[0][1] = 0;
+			m[0][2] = -sin(t);
+			m[0][3] = R*cos(t);
+
+			m[1][0] = 0;
+			m[1][1] = -1;
+			m[1][2] = 0;
+			m[1][3] = 0;
+
+			m[2][0] = -sin(t);
+			m[2][1] = 0;
+			m[2][2] = cos(t);
+			m[2][3] = R*sin(t);
+
+			m[3][0] = 0;
+			m[3][1] = 0;
+			m[3][2] = 0;
+			m[3][3] = 1;
+		for(int j=0; j<20; j++){
+			vectArray[0]=perfil[j].getX();
+			vectArray[1]=perfil[j].getY();
+			vectArray[2]=perfil[j].getZ();
+			vectArray[3]=perfil[j].getPV();
+			for(int i=0; i<4; i++){
+				vectResult[i] = 0.0;
+				for (int k=0; k<4; k++){
+					vectResult[i] += m[i][k] * vectArray[k];
+				}
+			}
+			sol[j] = PV3D(vectResult[0], vectResult[1], vectResult[2], vectResult[3]);
+		}
+		glBegin(GL_LINE_LOOP);
+		for(int j=0;j<20;j++){
+			glColor3f(0.0,0.0,1.0);
+			//glVertex3f(perfil[j].getX(), perfil[j].getY(), perfil[j].getZ());
+			glVertex3f(sol[j].getX(), sol[j].getY(), sol[j].getZ());
+		}
+		glEnd();
+	}
+	
 
 	glFlush();
 	glutSwapBuffers();
