@@ -103,11 +103,11 @@ void display(void) {
 		glBegin(GL_LINE_LOOP);
 		for(int j=0;j<nP;j++){
 			glColor3f(0.0,0.0,1.0);
+			//glVertex3f(perfil[j].getX(), perfil[j].getY(), perfil[j].getZ());
 			glVertex3f(sol[j].getX(), sol[j].getY(), sol[j].getZ());
 		}
 		glEnd();
 	}
-	
 
 	glFlush();
 	glutSwapBuffers();
