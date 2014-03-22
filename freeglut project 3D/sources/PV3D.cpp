@@ -60,13 +60,13 @@ PV3D* PV3D::calculaValorFormula(float t){
 }
 PV3D* PV3D::calculaValorPrimDerivada(float t){
 	GLfloat x = -3 * sin(t);
-	GLfloat y = -3 * sin(1.5 * t);
+	GLfloat y = -4.5 * sin(1.5 * t);
 	GLfloat z = 3 * cos(t);
 	return new PV3D(x,y,z,1);
 }
 PV3D* PV3D::calculaValorSegDerivada(float t){
 	GLfloat x = -3 * cos(t);
-	GLfloat y = -4.5 * cos(1.5 * t);
+	GLfloat y = -6.75 * cos(1.5 * t);
 	GLfloat z = -3 * sin(t);
 	return new PV3D(x,y,z,1);
 }

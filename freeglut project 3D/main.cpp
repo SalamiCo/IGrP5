@@ -95,13 +95,13 @@ void display(void) {
 	PV3D sol[20];
 
 	for(int valor=0; valor<50; valor++){
-		float t = (2* M_PI * valor) / 50.0;
+		float t = (4* M_PI * valor) / 50.0;
 		m = Matr::matrizNBTC(t);
-		for(int j=0; j<20; j++){
+		for(int j=0; j<nP; j++){
 			sol[j] = m.prodVect(perfil[j]);
 		}
 		glBegin(GL_LINE_LOOP);
-		for(int j=0;j<20;j++){
+		for(int j=0;j<nP;j++){
 			glColor3f(0.0,0.0,1.0);
 			glVertex3f(sol[j].getX(), sol[j].getY(), sol[j].getZ());
 		}
@@ -191,7 +191,7 @@ int main(int argc, char *argv[]){
 	glutMainLoop(); 
   
 	// We would never reach this point using classic glut
-	system("PAUSE"); 
+	//system("PAUSE"); 
    
 	return 0;
 }
