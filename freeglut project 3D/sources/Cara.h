@@ -9,6 +9,7 @@ private:
 
 public:
 	Cara(void);
+	Cara(int numVertices, VerticeNormal** arrayVN);
 	~Cara(void){};
 	
 	int getNumVertices(){return numVertices;};

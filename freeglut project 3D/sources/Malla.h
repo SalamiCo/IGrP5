@@ -25,5 +25,6 @@ public:
 	~Malla(void);
 	void dibuja();
 	PV3D* vectorNormalNewell(Cara c);
+	void hazMallaSuperficie();
 };
 

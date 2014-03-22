@@ -94,8 +94,8 @@ void display(void) {
 	Matr m;
 	PV3D sol[20];
 
-	for(int valor=0; valor<50; valor++){
-		float t = (4* M_PI * valor) / 50.0;
+	for(int valor=0; valor<150; valor++){
+		float t = (4* M_PI * valor) / 150.0;
 		m = Matr::matrizNBTC(t);
 		for(int j=0; j<nP; j++){
 			sol[j] = m.prodVect(perfil[j]);
@@ -103,7 +103,6 @@ void display(void) {
 		glBegin(GL_LINE_LOOP);
 		for(int j=0;j<nP;j++){
 			glColor3f(0.0,0.0,1.0);
-			//glVertex3f(perfil[j].getX(), perfil[j].getY(), perfil[j].getZ());
 			glVertex3f(sol[j].getX(), sol[j].getY(), sol[j].getZ());
 		}
 		glEnd();
