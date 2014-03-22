@@ -28,7 +28,7 @@ PV3D* PV3D::normaliza(){
 
 	newV->setX((1 / moduleVector) * this->getX());
 	newV->setY((1 / moduleVector) * this->getY());
-	newV->setZ((1/ moduleVector) * this->getZ());
+	newV->setZ((1 / moduleVector) * this->getZ());
 	newV->setPV(0); //vector
 
 	return newV;
@@ -36,6 +36,7 @@ PV3D* PV3D::normaliza(){
 
 PV3D* PV3D::clona(){
 	PV3D* newV = new PV3D();
+	//TODO
 	return newV;
 }
 
@@ -71,12 +72,15 @@ PV3D* PV3D::calculaValorSegDerivada(float t){
 }
 
 PV3D* PV3D::calculaT(PV3D* c){
-	return c->normaliza();
+	t = c->normaliza();
+	return t;
 }
 
 PV3D* PV3D::calculaB(PV3D* c, PV3D* cc){
-	return c->productoVectorial(cc)->normaliza();
+	b = c->productoVectorial(cc)->normaliza();
+	return b;
 }
 PV3D* PV3D::calculaN(){
-	return getB()->productoVectorial(getT());
+	n = getB()->productoVectorial(getT());
+	return n;
 }
