@@ -43,9 +43,9 @@ PV3D* Malla::vectorNormalNewell(Cara c){
 
 void Malla::hazMallaSuperficie(){
 	//Dimensiones de la superficie TODO: inicializarlas
-	GLdouble uMin, uMax, vMin, vMax;
+	GLdouble uMin = 0, uMax = 0, vMin = 0, vMax = 0;
 	//Número de divisiones TODO: inicializarlas
-	int nU, nV;
+	int nU = 100, nV = 100;
 	//Incrementos
 	GLdouble incU = (uMax - uMin)/(nU-1);
 	GLdouble incV = (vMax - vMin)/(nV-1);
@@ -59,7 +59,7 @@ void Malla::hazMallaSuperficie(){
 	normal = new PV3D*[numNormales];
 	cara = new Cara*[numCaras];
 
-	for(int i=0, u=uMin; i<nU; i++, u+=incU)
+	for(int i=0, u=uMin; i<nU; i++, u+=incU){
 		for(int j=0, v=vMin; j<nV; j++, v+=incV){
 			int indiceVertice = i*nV + j;
 			//Coordenadas del vértice y de la normal (indiceVertice)-ésimo
@@ -75,6 +75,8 @@ void Malla::hazMallaSuperficie(){
 				vn[2] = new VerticeNormal(indiceVertice-nV-1, indiceVertice-nV-1);
 				vn[3] = new VerticeNormal(indiceVertice-1, indiceVertice-1);
 				cara[indiceCara] = new Cara(4, vn);
+				indiceCara++;
 			}
 		}
+	}
 }
