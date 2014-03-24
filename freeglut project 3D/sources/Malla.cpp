@@ -13,12 +13,15 @@ Malla::~Malla(void)
 {
 }
 
-void Malla::dibuja(){
+void Malla::dibuja(bool rellena, bool normales){
 	for(int i = 0; i < numCaras; i++){
 		glColor3f(0.f, 0.f, 1.f);
 		glLineWidth(1.0);
 
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		if(rellena)
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		else
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 		glBegin(GL_POLYGON);
 		for(int j = 0; j < cara[i]->getNumVertices(); j++){
@@ -29,15 +32,17 @@ void Malla::dibuja(){
 		}
 		glEnd();
 
-		//Pintar las normales
-		/*glBegin(GL_LINES);
-		for(int j = 0; j < cara[i]->getNumVertices(); j++){
-			int iN = cara[i]->getIndiceNormalK(j);
-			int iV = cara[i]->getIndiceVerticeK(j);
-			glVertex3f(vertice[iV]->getX(), vertice[iV]->getY(), vertice[iV]->getZ());
-			glVertex3f(vertice[iV]->getX() + normal[iN]->getX(), vertice[iV]->getY() + normal[iN]->getY(), vertice[iV]->getZ() + normal[iN]->getZ());
+		if(normales){
+			//Pintar las normales
+			glBegin(GL_LINES);
+			for(int j = 0; j < cara[i]->getNumVertices(); j++){
+				int iN = cara[i]->getIndiceNormalK(j);
+				int iV = cara[i]->getIndiceVerticeK(j);
+				glVertex3f(vertice[iV]->getX(), vertice[iV]->getY(), vertice[iV]->getZ());
+				glVertex3f(vertice[iV]->getX() + normal[iN]->getX(), vertice[iV]->getY() + normal[iN]->getY(), vertice[iV]->getZ() + normal[iN]->getZ());
+			}
+			glEnd();
 		}
-		glEnd();*/
 	}
 }
 

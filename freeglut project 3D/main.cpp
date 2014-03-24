@@ -33,6 +33,8 @@ GLdouble angleX = 0.0;
 GLdouble angleY = 0.0;
 GLdouble angleZ = 0.0;
 int eje = 0; // 0:X 1:Y 2:Z
+bool rellena = false;
+bool normales = false;
 
 void initGL() {	 		 
 	glClearColor(0.6f,0.7f,0.8f,1.0);
@@ -103,7 +105,7 @@ void display(void) {
 		glRotated(angleZ, 0,0,1);
 	}
 
-	malla.dibuja();
+	malla.dibuja(rellena, normales);
 
 	glPopMatrix();
 
@@ -174,6 +176,21 @@ void key(unsigned char key, int x, int y){
 			angleZ -= 1.0;
 			eje = 2;
 			break;
+
+		case 'g': //Rellena
+			rellena = true;
+			break;
+		case 'h': //Sin rellenar
+			rellena = false;
+			break;
+
+		case 'j': //Dibuja normales
+			normales = true;
+			break;
+		case 'k': //No dibuja normales
+			normales = false;
+			break;
+
 		default:
 			need_redisplay = false;
 			break;
