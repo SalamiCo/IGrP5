@@ -67,6 +67,9 @@ void initGL() {
     glLightfv(GL_LIGHT0, GL_AMBIENT, a);
 	GLfloat p[]={25.0, 25.0, 0.0, 1.0};	 
 	glLightfv(GL_LIGHT0, GL_POSITION, p);
+
+	//Haz malla
+	malla.hazMallaSuperficie();
  }
 
 void display(void) {
@@ -100,10 +103,8 @@ void display(void) {
 		glRotated(angleZ, 0,0,1);
 	}
 
-	malla.hazMallaSuperficie();
 	malla.dibuja();
 
-	
 	glPopMatrix();
 
 	glFlush();
