@@ -62,7 +62,7 @@ void Malla::hazMallaSuperficie(){
 	double r = 0.5; //Radio circulos
 	double inc = (2*M_PI)/nP;
 	for(int i=0; i<nP; i++){
-		perfil[i] = PV3D(r*cos(2*M_PI-i*inc), r*sin(2*M_PI-i*inc), 0, 1);
+		perfil[i] = PV3D(r*cos(2*M_PI-i*-inc), r*sin(2*M_PI-i*-inc), 0, 1);
 	}
 	
 	Matr m;
