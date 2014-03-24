@@ -1,5 +1,6 @@
 #pragma once
 #include "PV3D.h"
+#include "Matr.h"
 
 class Coche {
 	private:
@@ -10,4 +11,5 @@ class Coche {
 		~Coche(void){};
 
 		void dibujaCoche();
+		void rodaja(float t);
 };

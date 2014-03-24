@@ -37,6 +37,7 @@ GLdouble angleY = 0.0;
 GLdouble angleZ = 0.0;
 bool rellena = false;
 bool normales = false;
+float time = 0.0;
 
 void initGL() {	 		 
 	glClearColor(0.6f,0.7f,0.8f,1.0);
@@ -104,7 +105,8 @@ void display(void) {
 	glRotated(angleZ, 0,0,1);
 
 	malla.dibuja(rellena, normales);
-	coche.dibujaCoche();
+	//coche.dibujaCoche();
+	coche.rodaja(time);
 	
 	glPopMatrix();
 
@@ -183,6 +185,13 @@ void key(unsigned char key, int x, int y){
 			break;
 		case 'k': //No dibuja normales
 			normales = false;
+			break;
+
+		case 'q': //Coche hacia delante
+			time += 0.1;
+			break;
+		case 'w': //Coche hacia atrás
+			time -= 0.1;
 			break;
 
 		default:

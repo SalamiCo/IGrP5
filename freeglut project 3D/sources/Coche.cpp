@@ -8,12 +8,27 @@ Coche::Coche(){
 void Coche::dibujaCoche(){
 	
 	//Cubo
-	glBegin(GL_LINE_STRIP);
+	glBegin(GL_LINE_LOOP);
 	for(int i=0; i<24; i++){
 		glVertex3f(verticesCubo[i]->getX(), verticesCubo[i]->getY(), verticesCubo[i]->getZ());
 	}
 	glEnd();
 	
+}
+
+void Coche::rodaja(float t){
+	PV3D sol[24];
+	Matr m;
+	m = Matr::matrizNBTC(t);
+	for(int i=0; i<24; i++){
+		sol[i] = m.prodVect(*verticesCubo[i]);
+	}
+	glBegin(GL_LINE_LOOP);
+  		for(int j=0;j<24;j++){
+  			glColor3f(1.0,0.0,0.0);
+  			glVertex3f(sol[j].getX(), sol[j].getY(), sol[j].getZ());
+  		}
+  	glEnd();
 }
 
 void Coche::creaCubo(){
