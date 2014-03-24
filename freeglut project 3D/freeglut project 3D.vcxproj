@@ -65,6 +65,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sources\Cara.cpp" />
+    <ClCompile Include="sources\Coche.cpp" />
+    <ClCompile Include="sources\Malla.cpp" />
+    <ClCompile Include="sources\Matr.cpp" />
+    <ClCompile Include="sources\PV3D.cpp" />
+    <ClCompile Include="sources\VerticeNormal.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sources\Cara.h" />
+    <ClInclude Include="sources\Coche.h" />
+    <ClInclude Include="sources\Malla.h" />
+    <ClInclude Include="sources\Matr.h" />
+    <ClInclude Include="sources\PV3D.h" />
+    <ClInclude Include="sources\VerticeNormal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

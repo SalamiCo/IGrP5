@@ -8,9 +8,11 @@
 #include <GL/glut.h>
 
 #include <iostream>
-#include "PV3D.h"
-#include "Matr.h"
-#include "Malla.h"
+#include "sources\PV3D.h"
+#include "sources\Matr.h"
+#include "sources\Malla.h"
+#include "sources\Coche.h"
+
 using namespace std;
 
 // Freeglut parameters
@@ -29,6 +31,7 @@ GLdouble lookX=0.0, lookY=0.0, lookZ=0.0;
 GLdouble upX=0, upY=1, upZ=0;
 
 Malla malla;
+Coche coche;
 GLdouble angleX = 0.0;
 GLdouble angleY = 0.0;
 GLdouble angleZ = 0.0;
@@ -101,8 +104,10 @@ void display(void) {
 	glRotated(angleZ, 0,0,1);
 
 	malla.dibuja(rellena, normales);
-
+	coche.dibujaCoche();
+	
 	glPopMatrix();
+
 
 	glFlush();
 	glutSwapBuffers();

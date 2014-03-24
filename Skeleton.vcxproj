@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Coche.cpp" />
     <ClCompile Include="freeglut project 3d\main.cpp" />
     <ClCompile Include="freeglut project 3D\sources\Cara.cpp" />
     <ClCompile Include="freeglut project 3D\sources\Malla.cpp" />
@@ -82,6 +83,7 @@
     <ClCompile Include="freeglut project 3D\sources\VerticeNormal.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Coche.h" />
     <ClInclude Include="freeglut project 3D\sources\Cara.h" />
     <ClInclude Include="freeglut project 3D\sources\Malla.h" />
     <ClInclude Include="freeglut project 3D\sources\Matr.h" />
