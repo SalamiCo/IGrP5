@@ -32,7 +32,6 @@ Malla malla;
 GLdouble angleX = 0.0;
 GLdouble angleY = 0.0;
 GLdouble angleZ = 0.0;
-int eje = 0; // 0:X 1:Y 2:Z
 bool rellena = false;
 bool normales = false;
 
@@ -96,14 +95,10 @@ void display(void) {
 
 	glPushMatrix();
 	glMatrixMode(GL_MODELVIEW);
-
-	if (eje==0){ 
-		glRotated(angleX, 1,0,0);
-	} else if (eje==1){
-		glRotated(angleY, 0,1,0);
-	} else if (eje==2){ 
-		glRotated(angleZ, 0,0,1);
-	}
+ 
+	glRotated(angleX, 1,0,0);
+	glRotated(angleY, 0,1,0);
+	glRotated(angleZ, 0,0,1);
 
 	malla.dibuja(rellena, normales);
 
@@ -152,29 +147,23 @@ void key(unsigned char key, int x, int y){
 
 		case 'a': //Eje X
 			angleX += 1.0;
-			eje = 0;
 			break;
 		case 'z': //Eje X
 			angleX -= 1.0;
-			eje = 0;
 			break;
 
 		case 's': //Eje Y
 			angleY += 1.0;
-			eje = 1;
 			break;
 		case 'x': //Eje Y
 			angleY -= 1.0;
-			eje = 1;
 			break;
 
 		case 'd': //Eje Z
 			angleZ += 1.0;
-			eje = 2;
 			break;
 		case 'c': //Eje Z
 			angleZ -= 1.0;
-			eje = 2;
 			break;
 
 		case 'g': //Rellena
