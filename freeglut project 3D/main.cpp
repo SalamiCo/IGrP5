@@ -29,6 +29,10 @@ GLdouble lookX=0.0, lookY=0.0, lookZ=0.0;
 GLdouble upX=0, upY=1, upZ=0;
 
 Malla malla;
+GLdouble angleX = 0.0;
+GLdouble angleY = 0.0;
+GLdouble angleZ = 0.0;
+int eje = 0; // 0:X 1:Y 2:Z
 
 void initGL() {	 		 
 	glClearColor(0.6f,0.7f,0.8f,1.0);
@@ -83,37 +87,24 @@ void display(void) {
 		glVertex3f(0, 0, 20);	     
 	glEnd();
 
-	/*
-	glColor3f(1.0, 1.0, 1.0);
+	// Our code
 
-	//Perfil por marco de Frenet
-	int nP = 20; //Numero de lados
-	PV3D perfil[20];
-	double r = 0.5; //Radio circulos
-	double inc = (2*M_PI)/nP;
-	for(int i=0; i<nP; i++){
-		perfil[i] = PV3D(r*cos(2*M_PI-i*inc), r*sin(2*M_PI-i*inc), 0, 1);
+	glPushMatrix();
+	glMatrixMode(GL_MODELVIEW);
+
+	if (eje==0){ 
+		glRotated(angleX, 1,0,0);
+	} else if (eje==1){
+		glRotated(angleY, 0,1,0);
+	} else if (eje==2){ 
+		glRotated(angleZ, 0,0,1);
 	}
-	
-	Matr m;
-	PV3D sol[20];
-
-	for(int valor=0; valor<150; valor++){
-		float t = (4* M_PI * valor) / 150.0;
-		m = Matr::matrizNBTC(t);
-		for(int j=0; j<nP; j++){
-			sol[j] = m.prodVect(perfil[j]);
-		}
-		glBegin(GL_LINE_LOOP);
-		for(int j=0;j<nP;j++){
-			glColor3f(0.0,0.0,1.0);
-			glVertex3f(sol[j].getX(), sol[j].getY(), sol[j].getZ());
-		}
-		glEnd();
-	}*/
 
 	malla.hazMallaSuperficie();
 	malla.dibuja();
+
+	
+	glPopMatrix();
 
 	glFlush();
 	glutSwapBuffers();
@@ -154,12 +145,38 @@ void key(unsigned char key, int x, int y){
 			//continue_in_main_loop = false; // (**)
 			//Freeglut's sentence for stopping glut's main loop (*)
 			glutLeaveMainLoop(); 
-			break;		 			 
+			break;
+
+		case 'a': //Eje X
+			angleX += 1.0;
+			eje = 0;
+			break;
+		case 'z': //Eje X
+			angleX -= 1.0;
+			eje = 0;
+			break;
+
+		case 's': //Eje Y
+			angleY += 1.0;
+			eje = 1;
+			break;
+		case 'x': //Eje Y
+			angleY -= 1.0;
+			eje = 1;
+			break;
+
+		case 'd': //Eje Z
+			angleZ += 1.0;
+			eje = 2;
+			break;
+		case 'c': //Eje Z
+			angleZ -= 1.0;
+			eje = 2;
+			break;
 		default:
 			need_redisplay = false;
 			break;
 	}
-
 	if (need_redisplay)
 		glutPostRedisplay();
 }
