@@ -33,7 +33,7 @@
     <ClCompile Include="freeglut project 3D\sources\Matr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Coche.cpp">
+    <ClCompile Include="freeglut project 3D\sources\Coche.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,7 +65,7 @@
     <ClInclude Include="freeglut project 3D\sources\Matr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Coche.h">
+    <ClInclude Include="freeglut project 3D\sources\Coche.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

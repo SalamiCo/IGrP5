@@ -8,10 +8,10 @@
 #include <GL/glut.h>
 
 #include <iostream>
-#include "sources\PV3D.h"
-#include "sources\Matr.h"
-#include "sources\Malla.h"
-#include "sources\Coche.h"
+#include "PV3D.h"
+#include "Matr.h"
+#include "Malla.h"
+#include "Coche.h"
 
 using namespace std;
 
@@ -37,7 +37,7 @@ GLdouble angleY = 0.0;
 GLdouble angleZ = 0.0;
 bool rellena = false;
 bool normales = false;
-float time = 0.0;
+double time = 0.0;
 
 void initGL() {	 		 
 	glClearColor(0.6f,0.7f,0.8f,1.0);
