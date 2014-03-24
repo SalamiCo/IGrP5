@@ -30,14 +30,14 @@ void Malla::dibuja(){
 		glEnd();
 
 		//Pintar las normales (ahora no funcionan, fuck)
-		/*glBegin(GL_LINES);
+		glBegin(GL_LINES);
 		for(int j = 0; j < cara[i]->getNumVertices(); j++){
 			int iN = cara[i]->getIndiceNormalK(j);
 			int iV = cara[i]->getIndiceVerticeK(j);
 			glVertex3f(vertice[iV]->getX(), vertice[iV]->getY(), vertice[iV]->getZ());
 			glVertex3f(vertice[iV]->getX() + normal[iN]->getX(), vertice[iV]->getY() + normal[iN]->getY(), vertice[iV]->getZ() + normal[iN]->getZ());
 		}
-		glEnd();*/
+		glEnd();
 	}
 }
 
@@ -48,9 +48,9 @@ PV3D* Malla::vectorNormalNewell(Cara* c){
 		PV3D* vertActual = vertice[c->getIndiceVerticeK(i)];
 		PV3D* vertSig = vertice[c->getIndiceVerticeK((i+1) % c->getNumVertices())];
 
-		n->setX(n->getX() + (vertActual->getY() - vertSig->getY() * vertActual->getZ() + vertSig->getZ()));
-		n->setY(n->getY() + (vertActual->getZ() - vertSig->getZ() * vertActual->getX() + vertSig->getX()));
-		n->setZ(n->getZ() + (vertActual->getX() - vertSig->getX() * vertActual->getY() + vertSig->getY()));
+		n->setX(n->getX() + ((vertActual->getY() - vertSig->getY()) * (vertActual->getZ() + vertSig->getZ())));
+		n->setY(n->getY() + ((vertActual->getZ() - vertSig->getZ()) * (vertActual->getX() + vertSig->getX())));
+		n->setZ(n->getZ() + ((vertActual->getX() - vertSig->getX()) * (vertActual->getY() + vertSig->getY())));
 	}
 	return n->normaliza();
 }
