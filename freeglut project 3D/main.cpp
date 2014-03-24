@@ -10,6 +10,7 @@
 #include <iostream>
 #include "PV3D.h"
 #include "Matr.h"
+#include "Malla.h"
 using namespace std;
 
 // Freeglut parameters
@@ -20,12 +21,14 @@ using namespace std;
 int WIDTH= 500, HEIGHT= 500;
 
 // Viewing frustum parameters
-GLdouble xRight=10, xLeft=-xRight, yTop=10, yBot=-yTop, N=1, F=1000;
+GLdouble xRight=5, xLeft=-xRight, yTop=5, yBot=-yTop, N=1, F=1000;
 
 // Camera parameters
 GLdouble eyeX=100.0, eyeY=100.0, eyeZ=100.0;
 GLdouble lookX=0.0, lookY=0.0, lookZ=0.0;
 GLdouble upX=0, upY=1, upZ=0;
+
+Malla malla;
 
 void initGL() {	 		 
 	glClearColor(0.6f,0.7f,0.8f,1.0);
@@ -80,6 +83,7 @@ void display(void) {
 		glVertex3f(0, 0, 20);	     
 	glEnd();
 
+	/*
 	glColor3f(1.0, 1.0, 1.0);
 
 	//Perfil por marco de Frenet
@@ -106,7 +110,10 @@ void display(void) {
 			glVertex3f(sol[j].getX(), sol[j].getY(), sol[j].getZ());
 		}
 		glEnd();
-	}
+	}*/
+
+	malla.hazMallaSuperficie();
+	malla.dibuja();
 
 	glFlush();
 	glutSwapBuffers();

@@ -15,7 +15,11 @@ Malla::~Malla(void)
 
 void Malla::dibuja(){
 	for(int i = 0; i < numCaras; i++){
+		glColor3f(0.f, 0.f, 1.f);
 		glLineWidth(1.0);
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
 		glBegin(GL_POLYGON);
 		for(int j = 0; j < cara[i]->getNumVertices(); j++){
 			int iN = cara[i]->getIndiceNormalK(j);
@@ -24,15 +28,25 @@ void Malla::dibuja(){
 			glVertex3f(vertice[iV]->getX(), vertice[iV]->getY(), vertice[iV]->getZ());
 		}
 		glEnd();
+
+		//Pintar las normales (ahora no funcionan, fuck)
+		/*glBegin(GL_LINES);
+		for(int j = 0; j < cara[i]->getNumVertices(); j++){
+			int iN = cara[i]->getIndiceNormalK(j);
+			int iV = cara[i]->getIndiceVerticeK(j);
+			glVertex3f(vertice[iV]->getX(), vertice[iV]->getY(), vertice[iV]->getZ());
+			glVertex3f(vertice[iV]->getX() + normal[iN]->getX(), vertice[iV]->getY() + normal[iN]->getY(), vertice[iV]->getZ() + normal[iN]->getZ());
+		}
+		glEnd();*/
 	}
 }
 
 
-PV3D* Malla::vectorNormalNewell(Cara c){
+PV3D* Malla::vectorNormalNewell(Cara* c){
 	PV3D* n = new PV3D();
-	for(int i=0; i<c.getNumVertices(); i++){
-		PV3D* vertActual = vertice[c.getIndiceVerticeK(i)];
-		PV3D* vertSig = vertice[c.getIndiceVerticeK(i+1 % c.getNumVertices())];
+	for(int i=0; i<c->getNumVertices(); i++){
+		PV3D* vertActual = vertice[c->getIndiceVerticeK(i)];
+		PV3D* vertSig = vertice[c->getIndiceVerticeK((i+1) % c->getNumVertices())];
 
 		n->setX(n->getX() + (vertActual->getY() - vertSig->getY() * vertActual->getZ() + vertSig->getZ()));
 		n->setY(n->getY() + (vertActual->getZ() - vertSig->getZ() * vertActual->getX() + vertSig->getX()));
@@ -42,41 +56,51 @@ PV3D* Malla::vectorNormalNewell(Cara c){
 }
 
 void Malla::hazMallaSuperficie(){
-	//Dimensiones de la superficie TODO: inicializarlas
-	GLdouble uMin = 0, uMax = 0, vMin = 0, vMax = 0;
-	//Número de divisiones TODO: inicializarlas
-	int nU = 100, nV = 100;
-	//Incrementos
-	GLdouble incU = (uMax - uMin)/(nU-1);
-	GLdouble incV = (vMax - vMin)/(nV-1);
-
-	//Tamaños de los arrays
-	numVertices = nU*nV;
-	numNormales = numVertices;
-	numCaras = (nU-1)*(nV-1);
-	//Creación de los arrays
+	//Perfil por marco de Frenet
+	int nP = 20; //Numero de lados
+	PV3D perfil[20];
+	double r = 0.5; //Radio circulos
+	double inc = (2*M_PI)/nP;
+	for(int i=0; i<nP; i++){
+		perfil[i] = PV3D(r*cos(2*M_PI-i*inc), r*sin(2*M_PI-i*inc), 0, 1);
+	}
+	
+	Matr m;
+	numVertices = nP*150;
 	vertice = new PV3D*[numVertices];
+	numNormales = nP*150;
 	normal = new PV3D*[numNormales];
+	numCaras = nP*150;
 	cara = new Cara*[numCaras];
 
-	for(int i=0, u=uMin; i<nU; i++, u+=incU){
-		for(int j=0, v=vMin; j<nV; j++, v+=incV){
-			int indiceVertice = i*nV + j;
-			//Coordenadas del vértice y de la normal (indiceVertice)-ésimo
-			vertice[indiceVertice] = new PV3D(x,y,z,1); //TODO: x,y,z
-			normal[indiceVertice] = new PV3D(x,y,z,0); //TODO: x,y,z
-			normal[indiceVertice]->normaliza();
-			//Construcción de caras cuadrangulares
-			if (i>0 && j>0){
-				int indiceCara = (i-1)*(nV-1) + (j-1);
-				VerticeNormal** vn = new VerticeNormal*[4];
-				vn[0] = new VerticeNormal(indiceVertice, indiceVertice);
-				vn[1] = new VerticeNormal(indiceVertice-nV, indiceVertice-nV);
-				vn[2] = new VerticeNormal(indiceVertice-nV-1, indiceVertice-nV-1);
-				vn[3] = new VerticeNormal(indiceVertice-1, indiceVertice-1);
-				cara[indiceCara] = new Cara(4, vn);
-				indiceCara++;
-			}
+	for(int i=0; i<150; i++){
+		float t = (4* M_PI * i) / 150.0;
+		m = Matr::matrizNBTC(t);
+		for(int j=0; j<nP; j++){
+			int i1 = (i + 1) % 150;
+			int j1 = (j + 1) % nP;
+
+			int k00 = i * nP + j;
+			int k01 = i * nP + j1;
+			int k10 = i1 * nP + j;
+			int k11 = i1 * nP + j1;
+			
+			VerticeNormal** vns = new VerticeNormal*[4];
+			vns[0] = new VerticeNormal(k00, k00);
+			vns[1] = new VerticeNormal(k01, k01);
+			vns[2] = new VerticeNormal(k11, k11);
+			vns[3] = new VerticeNormal(k10, k10);
+
+			vertice[k00] = new PV3D(m.prodVect(perfil[j]));
+			cara[k00]    = new Cara(4, vns);
+			normal[k00]  = new PV3D();
+		}
+	}
+	
+	for(int i=0; i<150; i++){
+		for(int j=0; j<nP; j++){
+			int k = i * nP + j;
+			normal[k]  = vectorNormalNewell(cara[k]);
 		}
 	}
 }

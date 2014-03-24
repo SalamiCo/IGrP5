@@ -1,6 +1,10 @@
 #pragma once
+#define _USE_MATH_DEFINES
+#include <cmath>
+
 #include "PV3D.h"
 #include "Cara.h"
+#include "Matr.h"
 
 #include <windows.h>
 
@@ -24,7 +28,7 @@ public:
 	Malla(void);
 	~Malla(void);
 	void dibuja();
-	PV3D* vectorNormalNewell(Cara c);
+	PV3D* vectorNormalNewell(Cara* c);
 	void hazMallaSuperficie();
 };
 
