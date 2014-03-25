@@ -107,9 +107,12 @@ void display(void) {
 	malla.dibuja(rellena, normales);
 	//coche.dibujaCoche();
 	coche.rodaja(time);
+	/*coche.dibujaRueda(0.3, -0.3, -0.3);
+	coche.dibujaRueda(0.3, -0.3, 0.3);
+	coche.dibujaRueda(-0.3, -0.3, 0.3);
+	coche.dibujaRueda(-0.3, -0.3, -0.3);*/
 	
 	glPopMatrix();
-
 	glFlush();
 	glutSwapBuffers();
 }

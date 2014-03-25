@@ -34,6 +34,7 @@ void Malla::dibuja(bool rellena, bool normales){
 
 		if(normales){
 			//Pintar las normales
+			glColor3f(1.0, 0.0, 0.0);
 			glBegin(GL_LINES);
 			for(int j = 0; j < cara[i]->getNumVertices(); j++){
 				int iN = cara[i]->getIndiceNormalK(j);
