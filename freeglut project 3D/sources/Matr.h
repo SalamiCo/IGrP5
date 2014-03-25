@@ -1,3 +1,6 @@
+//Pedro Morgado Alarcón
+//Samuel Méndez Galán
+
 #pragma once
 
 #include "PV3D.h"

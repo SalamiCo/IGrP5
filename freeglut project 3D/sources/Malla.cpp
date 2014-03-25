@@ -1,3 +1,6 @@
+//Pedro Morgado Alarcón
+//Samuel Méndez Galán
+
 #include "Malla.h"
 
 Malla::Malla(void){

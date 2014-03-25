@@ -1,3 +1,6 @@
+//Pedro Morgado Alarcón
+//Samuel Méndez Galán
+
 #pragma once
 class VerticeNormal
 {

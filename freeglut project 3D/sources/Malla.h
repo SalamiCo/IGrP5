@@ -1,3 +1,6 @@
+//Pedro Morgado Alarcón
+//Samuel Méndez Galán
+
 #pragma once
 #define _USE_MATH_DEFINES
 #include <cmath>

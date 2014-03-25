@@ -1,3 +1,6 @@
+//Pedro Morgado Alarcón
+//Samuel Méndez Galán
+
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <Windows.h>
@@ -5,6 +8,7 @@
 #include <gl/GLU.h>
 
 #include <GL/freeglut.h>
+
 #include <GL/glut.h>
 
 #include <iostream>
