@@ -12,4 +12,5 @@ class Coche {
 
 		void dibujaCoche();
 		void rodaja(float t);
+		void dibujaRueda(GLfloat x, GLfloat y, GLfloat z);
 };

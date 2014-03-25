@@ -13,7 +13,6 @@ void Coche::dibujaCoche(){
 		glVertex3f(verticesCubo[i]->getX(), verticesCubo[i]->getY(), verticesCubo[i]->getZ());
 	}
 	glEnd();
-	
 }
 
 void Coche::rodaja(float t){
@@ -25,11 +24,17 @@ void Coche::rodaja(float t){
 	}
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glBegin(GL_POLYGON);
-  		for(int j=0;j<24;j++){
-  			glColor3f(0.0,1.0,0.0);
-  			glVertex3f(sol[j].getX(), sol[j].getY(), sol[j].getZ());
-  		}
+	glColor3f(0.0,1.0,0.0);
+  	for(int j=0;j<24;j++){
+  		glVertex3f(sol[j].getX(), sol[j].getY(), sol[j].getZ());
+  	}
   	glEnd();
+
+	glColor3f(1.0, 0.0, 0.0);
+	dibujaRueda(sol[8].getX(), sol[8].getY(), sol[8].getZ());
+	dibujaRueda(sol[9].getX(), sol[9].getY(), sol[9].getZ());
+	dibujaRueda(sol[10].getX(), sol[10].getY(), sol[10].getZ());
+	dibujaRueda(sol[11].getX(), sol[11].getY(), sol[11].getZ());
 }
 
 void Coche::creaCubo(){
@@ -68,4 +73,17 @@ void Coche::creaCubo(){
 	verticesCubo[21] = new PV3D(0.3, -0.3, 0.3, 1);
 	verticesCubo[22] = new PV3D(-0.3, -0.3, 0.3, 1);
 	verticesCubo[23] = new PV3D(-0.3, -0.3, -0.3, 1);
+}
+
+void Coche::dibujaRueda(GLfloat x, GLfloat y, GLfloat z){
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	GLUquadricObj* cilindro = gluNewQuadric();
+	
+	glTranslatef(x, y, z);
+	//glRotated(90, 0, 1, 0);
+	gluCylinder(cilindro, 0.1, 0.1, 0.1, 50, 1);
+	gluDisk(cilindro, 1, 1, 20, 4);
+	gluDeleteQuadric(cilindro);
+	glPopMatrix();
 }

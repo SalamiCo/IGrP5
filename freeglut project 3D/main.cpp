@@ -110,7 +110,6 @@ void display(void) {
 	
 	glPopMatrix();
 
-
 	glFlush();
 	glutSwapBuffers();
 }
